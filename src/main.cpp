@@ -23,19 +23,17 @@
 
 #include "thinger/thinger.h"
 
-#define USER_ID             "YOUR_USER_ID"
-#define DEVICE_ID           "YOUR_DEVICE_ID"
-#define DEVICE_CREDENTIAL   "YOUR_DEVICE_CREDENTIAL"
+#define USER_ID             amlen
+#define DEVICE_ID           test00
+#define DEVICE_CREDENTIAL   111111
 
 int main(int argc, char *argv[])
 {
     thinger_device thing(USER_ID, DEVICE_ID, DEVICE_CREDENTIAL);
 
-    // define thing resources here. i.e, this is a sum example
-    thing["sum"] = [](pson& in, pson& out){
-        out["result"] = (int) in["value1"] + (int) in["value2"];
-    };
+    
 
     thing.start();
+    thing.write_bucket("LoraDataStream", elapsed_time);
     return 0;
 }
